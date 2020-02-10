@@ -10,6 +10,9 @@ import SwiftUI
 
 struct ArticlesList: View {
     var articles: [Article]
+    
+    @State var shouldPresent: Bool = false
+    @State var articleURL: URL?
     var body: some View {
         List {
            ForEach(articles) { article in
@@ -27,8 +30,21 @@ struct ArticlesList: View {
                    
                        Text("\( article.description != nil ? article.description! : "")")
                            .lineLimit(12)
+                       
+                       Button(
+                        action: {
+                            self.articleURL = URL(string: article.url!)
+                            self.shouldPresent = true
+                        },
+                        label: {
+                            Text("\(article.url != nil ? "Read" : "")")
+                            .foregroundColor(Color.blue)
+                        }
+                    )
+ 
                        Divider()
                    } //VStack
+                    .sheet(isPresented: self.$shouldPresent) {SafariView(url: self.articleURL!)}
            } // foreach
        } // list
     }
@@ -36,7 +52,7 @@ struct ArticlesList: View {
 
 let calendar = Calendar.current
 let components1 = DateComponents(calendar: calendar, year: 2020, month: 1, day: 23)
-let sampleArticle1 = Article (title: "Emoji reactions are sliding into Twitter’s DMs - The Verge", description: "Twitter’s direct messages now support emoji reactions. To use them, you can either tap the small “heart and plus icon” that appears to the right of messages you receive, or double tap a message on mobile.", author: "Jon Porter", urlToImage: "https://cdn.vox-cdn.com/thumbor/--0kTTyAQnE5e8LMunWwCIl-wEw=/0x173:2040x1241/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/10456871/mdoying_180117_2249_twitter_0303stills.jpg", publishedAt: calendar.date(from: components1)!, source: Source(id: "the-verge", name: "the-verge", description: "", country: "us", category: "general", url: "https://cdn.vox-cdn.com") )
+let sampleArticle1 = Article (title: "Emoji reactions are sliding into Twitter’s DMs - The Verge", description: "Twitter’s direct messages now support emoji reactions. To use them, you can either tap the small “heart and plus icon” that appears to the right of messages you receive, or double tap a message on mobile.", author: "Jon Porter", urlToImage: "https://cdn.vox-cdn.com/thumbor/--0kTTyAQnE5e8LMunWwCIl-wEw=/0x173:2040x1241/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/10456871/mdoying_180117_2249_twitter_0303stills.jpg", publishedAt: calendar.date(from: components1)!, source: Source(id: "the-verge", name: "the-verge", description: "", country: "us", category: "general", url: "https://cdn.vox-cdn.com"), url: "null")
 struct ArticlesList_Previews: PreviewProvider {
     static var previews: some View {
         ArticlesList(articles: [sampleArticle1])

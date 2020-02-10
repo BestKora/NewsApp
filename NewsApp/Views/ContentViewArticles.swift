@@ -8,10 +8,8 @@
 
 import SwiftUI
 
-
-
 struct ContentViewArticles: View {
-    @ObservedObject var articlesViewModel = ArticlesViewModel ()
+    @ObservedObject var articlesViewModel = ArticlesViewModelErr ()
     
     var body: some View {
         VStack {
@@ -22,7 +20,7 @@ struct ContentViewArticles: View {
             }
             .pickerStyle(SegmentedPickerStyle())
             if articlesViewModel.indexEndpoint == 1 {
-               SearchView(searchTerm: self.$articlesViewModel.searchString)
+               SearchView(searchTerm: $articlesViewModel.searchString)
             }
             if articlesViewModel.indexEndpoint == 2 {
                        Picker("", selection: $articlesViewModel.searchString){
@@ -39,6 +37,13 @@ struct ContentViewArticles: View {
             }
                ArticlesList(articles: articlesViewModel.articles)
         } // VStack
+        .alert(item: self.$articlesViewModel.articlesError) { error in
+                    Alert(
+                       title: Text("Network error"),
+                       message: Text(error.localizedDescription).font(.subheadline),
+                       dismissButton: .default(Text("OK"))
+                     )
+        } // alert
     } // body
 }
 

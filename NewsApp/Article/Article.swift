@@ -22,6 +22,7 @@ struct Article: Codable, Identifiable {
     let urlToImage: String?
     let publishedAt: Date?
     let source: Source
+    let url: String?
 }
 
 struct SourcesResponse: Codable {

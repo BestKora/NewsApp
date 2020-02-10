@@ -26,7 +26,7 @@ final class ArticlesViewModel: ObservableObject {
     init(index:Int = 0, text: String = "sports") {
         self.indexEndpoint = index
         self.searchString = text
-        Publishers.CombineLatest( $indexEndpoint, validString)
+        Publishers.CombineLatest( $indexEndpoint,  validString)
         .flatMap { (indexEndpoint, search)
                               -> AnyPublisher<[Article], Never> in
                 self.articles = [Article]()

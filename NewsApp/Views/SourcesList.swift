@@ -19,9 +19,18 @@ struct SourcesList: View {
                              articlesViewModel:
                                  ArticlesViewModel (index: 3, text: source.id!))
                 ){
-                    VStack {
+                    VStack (alignment: .leading){
+                        HStack(alignment: .bottom) {
+                            if UIImage(named: "\( source.id != nil ? source.id! : "")") != nil {
+                            Image(uiImage:
+                                UIImage(named: "\( source.id != nil ? source.id! : "")")!)
+                            .resizable()
+                            .frame(width:60 , height: 60)
+                            }
                         Text("\( source.name != nil ? source.name! : "")")
                         .font(.title)
+                        Text("\( source.country != nil ? source.country! : "")")
+                        }
                         Text("\( source.description != nil ? source.description! : "")")
                         .lineLimit(3)
                     } //VStack
