@@ -193,6 +193,7 @@ class NewsAPI {
                    return promise(
                        .failure(.urlError(URLError(.unsupportedURL))))     // 0
                }
+            print("\(url)")
                self.fetchErr(url)                                          // 1
                  .tryMap { (result: NewsResponse) -> [Article] in          // 2
                          result.articles }
