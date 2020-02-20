@@ -33,7 +33,7 @@ final class ArticlesViewModelErr: ObservableObject {
         .setFailureType(to: NewsError.self)
         .flatMap {  (indexEndpoint, search) ->
                                AnyPublisher<[Article], NewsError> in
-            if 3...10 ~= search.count {
+            if 3...30 ~= search.count {
             self.articles = [Article]()
             return self.newsAPI.fetchArticlesErr(from:
                     Endpoint( index: indexEndpoint, text: search)!)

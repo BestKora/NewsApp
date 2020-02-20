@@ -5,6 +5,7 @@
 //  Created by Tatiana Kornilova on 28/10/2019.
 //
 
+// View Model для статей
 import Combine
 import Foundation
 
@@ -12,7 +13,6 @@ final class ArticlesViewModel: ObservableObject {
     // input
     @Published var indexEndpoint: Int = 0
     @Published var searchString: String = "sports"
-   
     // output
     @Published var articles = [Article]()
     
@@ -27,12 +27,11 @@ final class ArticlesViewModel: ObservableObject {
         self.indexEndpoint = index
         self.searchString = text
         Publishers.CombineLatest( $indexEndpoint,  validString)
-        .flatMap { (indexEndpoint, search)
-                              -> AnyPublisher<[Article], Never> in
+        .flatMap { (indexEndpoint, search) -> AnyPublisher<[Article], Never> in
                 self.articles = [Article]()
                 return NewsAPI.shared.fetchArticles(from:
-                  Endpoint( index: indexEndpoint, text: search )!)
-             }
+                               Endpoint( index: indexEndpoint, text: search )!)
+        }
         .assign(to: \.articles, on: self)
         .store(in: &self.cancellableSet)
     }

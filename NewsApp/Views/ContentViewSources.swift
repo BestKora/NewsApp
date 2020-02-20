@@ -28,17 +28,17 @@ struct ContentViewSources: View {
                 }
                 .font(.headline)
                 .pickerStyle(SegmentedPickerStyle())
- 
+               
                 SourcesList(sources: sourcesViewModel.sources)
             }// VStack
         } // Navigation
         .alert(item: self.$sourcesViewModel.sourcesError) { error in
-                Alert( title: Text("Network error"),
-                       message: Text(error.localizedDescription)
-                                .font(.subheadline),
-                       dismissButton: .default(Text("OK"))
-                )
-        } // alert
+                       Alert( title: Text("Network error"),
+                              message: Text(error.localizedDescription)
+                                       .font(.subheadline),
+                              dismissButton: .default(Text("OK"))
+                       )
+               } // alert
     } // body
 }
 
@@ -47,3 +47,4 @@ struct ContentViewSources_Previews: PreviewProvider {
         ContentViewSources()
     }
 }
+

@@ -37,7 +37,7 @@ struct ContentViewArticles: View {
             }
                ArticlesList(articles: articlesViewModel.articles)
         } // VStack
-        .alert(item: self.$articlesViewModel.articlesError) { error in
+            .alert(item: self.$articlesViewModel.articlesError) { error in
                     Alert(
                        title: Text("Network error"),
                        message: Text(error.localizedDescription).font(.subheadline),

@@ -106,7 +106,7 @@ final class ImageLoader: ObservableObject {
              }
 
             private func fetchImage(for url: URL?) -> AnyPublisher<UIImage?, Never> {
-              guard url != nil/*, image == nil */else {
+              guard url != nil/*, image == nil*/ else {
                   return Just(nil).eraseToAnyPublisher()            // 1
               }
               return

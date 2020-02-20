@@ -11,8 +11,7 @@ import Combine
 
 struct APIConstants {
     // News  API key url: https://newsapi.org
-    static let apiKey: String = "dad56f872c6e425f8992c93c87060824"
-    //"78373fa588974c0382c031230e906169"//"654f479b4cb34f4ea18db7eda6437ec2" //"API_KEY"
+    static let apiKey: String = "dad56f872c6e425f8992c93c87060824"//"API_KEY"
     
     static let jsonDecoder: JSONDecoder = {
      let jsonDecoder = JSONDecoder()
@@ -104,6 +103,7 @@ enum Endpoint {
         default: return nil
         }
     }
+    
     var countryLang : [String: String]  {return [
       "ar": "es",  // argentina
       "au": "en",  // australia
@@ -173,8 +173,10 @@ class NewsAPI {
      }
     
     // Асинхронная выборка источников информации
-    func fetchSources(for country: String) -> AnyPublisher<[Source], Never> {
-        guard let url = Endpoint.sources(country: country).absoluteURL else {
+    func fetchSources(for country: String)
+                                       -> AnyPublisher<[Source], Never> {
+        guard let url = Endpoint.sources(country: country).absoluteURL
+            else {
                     return Just([Source]()).eraseToAnyPublisher() // 0
         }
         return fetch(url)                                         // 1
@@ -183,6 +185,7 @@ class NewsAPI {
                .replaceError(with: [Source]())                    // 3
                .eraseToAnyPublisher()                             // 4
     }
+    
     
      // Асинхронная  выборка статей  с сообщением об ошибке
        func fetchArticlesErr(from endpoint: Endpoint) ->
@@ -193,7 +196,6 @@ class NewsAPI {
                    return promise(
                        .failure(.urlError(URLError(.unsupportedURL))))     // 0
                }
-            print("\(url)")
                self.fetchErr(url)                                          // 1
                  .tryMap { (result: NewsResponse) -> [Article] in          // 2
                          result.articles }
@@ -341,4 +343,5 @@ class NewsAPI {
     //"db358b36376b40528bac16f119610dd9"
     //"78373fa588974c0382c031230e906169"
     //"1a1c707884f343f6a5d1b2653eecb8d9"
+    //"654f479b4cb34f4ea18db7eda6437ec2"
 }
