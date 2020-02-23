@@ -2,8 +2,8 @@
 //  ImageData.swift
 //  MovieSwift
 //
-//  Created by Thomas Ricouard on 09/06/2019.
-//  Copyright © 2019 Thomas Ricouard. All rights reserved.
+//  Created by Tatiana Kornilova on 02/02/2020.
+//  Copyright © 2020 Tatiana Kornilova. All rights reserved.
 //
 
 import UIKit
@@ -28,7 +28,7 @@ class ImageLoaderCache {
         }
     }
 }
-
+// -----------------
 final class ImageLoader: ObservableObject {
     // input
     @Published var url: URL?
@@ -86,13 +86,6 @@ final class ImageLoader: ObservableObject {
     
     private var cancellableSet: Set<AnyCancellable> = []
     
-    deinit {
-           for cancell in cancellableSet {
-               cancell.cancel()
-           }
-    }
-     
-   
     /*
         // Init Light
         init(url: URL?) {

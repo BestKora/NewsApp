@@ -26,7 +26,6 @@ struct ContentViewSources: View {
                     Text("in").tag("in")
                     Text("sa").tag("sa")
                 }
-                .font(.headline)
                 .pickerStyle(SegmentedPickerStyle())
                
                 SourcesList(sources: sourcesViewModel.sources)

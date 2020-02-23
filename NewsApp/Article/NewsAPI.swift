@@ -253,11 +253,7 @@ class NewsAPI {
     }
     
        private var subscriptions = Set<AnyCancellable>()
-       deinit {
-              for cancell in subscriptions {
-                  cancell.cancel()
-              }
-    }
+    
     /*
      // Выборка статей без Generic "издателя"
     func fetchArticles(from endpoint: Endpoint) -> AnyPublisher<[Article], Never> {

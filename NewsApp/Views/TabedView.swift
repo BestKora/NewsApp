@@ -2,8 +2,8 @@
 //  TabedView.swift
 //  NewsApp With SwiftUI Framework
 //
-//  Created by Алексей Воронов on 15.06.2019.
-//  Copyright © 2019 Алексей Воронов. All rights reserved.
+//  Created by Tatiana Kornilova on 02/02/2020.
+//  Copyright © 2020 Tatiana Kornilova. All rights reserved.
 //
 
 import SwiftUI

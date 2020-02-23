@@ -28,7 +28,6 @@ final class ArticlesViewModelErr: ObservableObject {
     init(index:Int = 0, text: String = "sports") {
         self.indexEndpoint = index
         self.searchString = text
-        
         Publishers.CombineLatest( $indexEndpoint, validString)
         .setFailureType(to: NewsError.self)
         .flatMap {  (indexEndpoint, search) ->
@@ -53,13 +52,7 @@ final class ArticlesViewModelErr: ObservableObject {
         })
         .store(in: &self.cancellableSet)
     }
-    
     private var cancellableSet: Set<AnyCancellable> = []
-    deinit {
-        for cancell in cancellableSet {
-            cancell.cancel()
-        }
-    }
 }
 
    

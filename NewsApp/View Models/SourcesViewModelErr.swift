@@ -44,6 +44,7 @@ final class SourcesViewModelErr: ObservableObject {
           })
           .store(in: &self.cancellableSet)
       }
+     private var cancellableSet: Set<AnyCancellable> = []
  /*
     init() {
         Publishers.CombineLatest( $country,  validString)
@@ -57,12 +58,5 @@ final class SourcesViewModelErr: ObservableObject {
         .store(in: &self.cancellableSet)
     }
 */
-    private var cancellableSet: Set<AnyCancellable> = []
- 
-    deinit {
-        for cancell in cancellableSet {
-            cancell.cancel()
-        }
-    }
 }
 
