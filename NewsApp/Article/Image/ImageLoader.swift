@@ -29,13 +29,14 @@ class ImageLoaderCache {
     }
 }
 // -----------------
+
 final class ImageLoader: ObservableObject {
     // input
     @Published var url: URL?
     // output
     @Published var image: UIImage?
     @Published var noData = false
-    
+
     // Init with Error
     init(url: URL?) {
         self.url = url
@@ -85,7 +86,8 @@ final class ImageLoader: ObservableObject {
     }
     
     private var cancellableSet: Set<AnyCancellable> = []
-    
+  }
+
     /*
         // Init Light
         init(url: URL?) {
@@ -109,5 +111,7 @@ final class ImageLoader: ObservableObject {
                   .receive(on: RunLoop.main)                        // 5
                   .eraseToAnyPublisher()                            // 6
           }
-    */
-}
+    private var cancellableSet: Set<AnyCancellable> = []
+}*/
+
+
